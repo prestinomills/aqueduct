@@ -4,10 +4,6 @@
 # 
 # This script output the geo information for all the regions and generate the corresponding input file for the ArcGIS map
 
-pip install opencage
-
-&&
-
 import os
 import sys
 import pandas as pd 

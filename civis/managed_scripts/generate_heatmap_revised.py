@@ -4,6 +4,10 @@
 # 
 # This script output the geo information for all the regions and generate the corresponding input file for the ArcGIS map
 
+pip install opencage
+
+&&
+
 import os
 import sys
 import pandas as pd 
@@ -20,6 +24,7 @@ import seaborn as sns
 from matplotlib.colors import ListedColormap
 import matplotlib.patches as mpatches
 import csv
+import intake_civis
 
 import arcgis
 from arcgis.features import SpatialDataFrame as sdf
@@ -29,7 +34,10 @@ from arcgis.gis import GIS
 from copy import deepcopy
 from datetime import datetime
 
-gis = GIS("https://lahub.maps.arcgis.com/", "DYu_lahub", "Il0veesridearly!")
+lahub_user = os.environ["LAHUB_ACC_USERNAME"]
+lahub_pass = os.environ["LAHUB_ACC_PASSWORD"]
+
+gis = GIS("https://lahub.maps.arcgis.com/", lahub_user, lahub_pass)
 
 
 API_KEY = '576004cefa1b43648fd6cd7059ae8196' # get api key from:  https://opencagedata.com

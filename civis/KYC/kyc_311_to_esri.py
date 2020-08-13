@@ -24,7 +24,7 @@ def prep_311_data(file):
         (expr.createddate > (ibis.now() - ibis.interval(months=6)))
         & (expr.requesttype != "Homeless Encampment")
     ]
-    df = recent_srs.execute()
+    df = recent_srs.execute(limit=none)
     df.to_csv(file, index=False)
 
 

@@ -20,7 +20,7 @@ lahub_pass = os.environ["LAHUB_ACC_PASSWORD"]
 socrata_token = 'LJ60SFL7ZqoC4IWosLhEmJV2a'
 socrata_user = os.environ["SOCRATA_ACC_USERNAME"]
 socrata_pass = os.environ["SOCRATA_ACC_PASSWORD"]
-myla311_layer = '4db3e9c3d13543b6a686098e0603ddcf'
+myla311_layer = '332931e3bb144051a39dc533ae660502'
 pwd = os.getcwd()
 OUTPUT_FILE = pwd + "/MyLA311 Service Requests Last 6 Months.csv"
 
@@ -34,6 +34,7 @@ def prep_311_data(file,token,user,pas):
     range_max = df2['createddate'].max()
     range_min = range_max - pd.DateOffset(months=6)
     df2 = df2[(df2['createddate'] >= range_min)]
+    df2 = df2.drop(columns=['location'])
     df2.to_csv(file, index=False)
 
 def update_geohub_layer(user, pw, layer, update_data):

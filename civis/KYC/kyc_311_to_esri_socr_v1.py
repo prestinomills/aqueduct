@@ -20,7 +20,7 @@ lahub_pass = os.environ["LAHUB_ACC_PASSWORD"]
 socrata_token = 'LJ60SFL7ZqoC4IWosLhEmJV2a'
 socrata_user = os.environ["SOCRATA_ACC_USERNAME"]
 socrata_pass = os.environ["SOCRATA_ACC_PASSWORD"]
-myla311_layer = '332931e3bb144051a39dc533ae660502'
+myla311_layer = '3eb07324793142c4a0d991084b920349'
 pwd = os.getcwd()
 OUTPUT_FILE = pwd + "/MyLA311 Service Requests Last 6 Months.csv"
 

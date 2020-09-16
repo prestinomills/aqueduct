@@ -13,7 +13,7 @@ lahub_pass = os.environ["LAHUB_ACC_PASSWORD"]
 
 pwd = os.getcwd()
 OUTPUT_FILE = pwd + "/MyLA311 Service Requests Last 6 Months.csv"
-myla311_layer = "4db3e9c3d13543b6a686098e0603ddcf"
+myla311_layer = "3eb07324793142c4a0d991084b920349"
 
 
 # For 311

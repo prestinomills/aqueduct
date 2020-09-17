@@ -26,6 +26,7 @@ OUTPUT_FILE = pwd + "/MyLA311 Service Requests Last 6 Months.csv"
 
 def prep_311_data(file,token,user,pas):
     client = Socrata("data.lacity.org", token, username=user, password=pas)
+    client.timeout = 70
     df = pd.DataFrame(client.get('rq3b-xjk8', limit=10000000))
     df2=df[(df.requesttype != 'Homeless Encampment')]
     df2['createddate']= pd.to_datetime(df2['createddate'])

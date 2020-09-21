@@ -30,6 +30,9 @@ def prep_311_data(file,token,user,pas):
     df = pd.DataFrame(client.get('rq3b-xjk8', limit=10000000))
     df2=df[(df.requesttype != 'Homeless Encampment')]
     df2['createddate']= pd.to_datetime(df2['createddate'])
+    df2['updateddate']= pd.to_datetime(df2['updateddate'])
+    df2['closeddate']= pd.to_datetime(df2['closeddate'], errors = 'coerce')
+    df2['servicedate']= pd.to_datetime(df2['servicedate'], errors = 'coerce')
     mask = df2['createddate'] <= datetime.datetime.now()
     df2 = df2.loc[mask]
     range_max = df2['createddate'].max()

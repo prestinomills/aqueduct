@@ -11,7 +11,7 @@ lahub_user = os.environ["LAHUB_ACC_USERNAME"]
 lahub_pass = os.environ["LAHUB_ACC_PASSWORD"]
 URL = "https://foodoasis.la/api/stakeholderbests?categoryIds[]=1&categoryIds[]=9&latitude=33.99157326008516&longitude=-118.25853610684041&distance=5&isInactive=either&verificationStatusId=0&maxLng=-117.83718436872704&maxLat=34.193301591847344&minLng=-118.67988784495431&minLat=33.78936487151597&tenantId=1"
 output = pwd +'/foodoasisla.csv'
-flayer = '61129345f82a49718f294e52174bef2e'
+fla_layer = '61129345f82a49718f294e52174bef2e'
 
 
 def foodoasisla(json, output):

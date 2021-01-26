@@ -80,6 +80,12 @@ def foodoasisla(json, output):
     fla.index.name='UNIQID'
     fla.to_csv(output)
 
+def update_geohub_layer(user, pw, layer, update_data):
+    geohub = GIS('https://lahubcom.maps.arcgis.com', user, pw)
+    flayer = geohub.content.get(layer)
+    flayer_collection = FeatureLayerCollection.fromitem(flayer)
+    flayer_collection.manager.overwrite(update_data)
+    
 if __name__ == "__main__":
     foodoasisla(URL,output)
     update_geohub_layer(lahub_user, lahub_pass, fla_layer, output)

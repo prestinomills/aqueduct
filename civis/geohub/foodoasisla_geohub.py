@@ -11,7 +11,7 @@ lahub_user = os.environ["LAHUB_ACC_USERNAME"]
 lahub_pass = os.environ["LAHUB_ACC_PASSWORD"]
 URL = "https://foodoasis.la/api/stakeholderbests?categoryIds[]=1&categoryIds[]=9&latitude=33.99157326008516&longitude=-118.25853610684041&distance=5&isInactive=either&verificationStatusId=0&maxLng=-117.83718436872704&maxLat=34.193301591847344&minLng=-118.67988784495431&minLat=33.78936487151597&tenantId=1"
 output = pwd +'/Food Oasis LA.csv'
-fla_layer = '9423899063404659b3c4507667b4893d'
+fla_layer = 'b3a61e62a98d46ecb078aca873fa1eae'
 
 
 def Flagnum(flag):
@@ -75,7 +75,7 @@ def foodoasisla(json, output):
     df4['Unknown Flag'] = df4.UKF.apply(Flagnum)
     df4['Community Garden Flag'] = df4.CGF.apply(Flagnum)
 
-    fla = df4[['name','address1','address2','city','state','zip','phone','latitude','longitude','website','notes','email','facebook','twitter','pinterest','linkedin','description','donationSchedule','donationDeliveryInstructions','donationNotes','covidNotes','categoryNotes','eligibilityNotes','is_verified','Food Pantry Flag', 'Meal Program Flag', 'Other Flag', 'Shelter Flag', 'Food Bank Flag', 'Care Center Flag', 'Unknown Flag', 'Community Garden Flag']].copy()
+    fla = df4[['name','categories','address1','address2','city','state','zip','phone','latitude','longitude','website','notes','email','facebook','twitter','pinterest','linkedin','description','donationSchedule','donationDeliveryInstructions','donationNotes','covidNotes','categoryNotes','eligibilityNotes','is_verified','Food Pantry Flag', 'Meal Program Flag', 'Other Flag', 'Shelter Flag', 'Food Bank Flag', 'Care Center Flag', 'Unknown Flag', 'Community Garden Flag']].copy()
     
     fla.index.name='UNIQID'
     fla.to_csv(output)

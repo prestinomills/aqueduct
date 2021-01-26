@@ -37,7 +37,6 @@ def foodoasisla(json, output):
         # However many items are in there, it'll create new columns for it
         this_col_df = split_df[col].apply(pandas.Series)
         print("Unpack our dictionary")
-        display(this_col_df.head(2))
         category_df = category_df.append(this_col_df, sort=False)
         
         

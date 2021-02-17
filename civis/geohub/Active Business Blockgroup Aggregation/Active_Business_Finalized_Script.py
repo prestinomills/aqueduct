@@ -34,36 +34,26 @@ from arcgis.features import FeatureLayer
 from arcgis.features import FeatureLayerCollection
 import json
 from copy import deepcopy
+import intake_civis
 
-
-# In[3]:
+lahub_user = os.environ["LAHUB_ACC_USERNAME"]
+lahub_pass = os.environ["LAHUB_ACC_PASSWORD"]
 
 
 #---Setting the Outputs
 ABOutput=pwd+'/Listing_of_Active_Businesses.csv'
 
 
-# In[ ]:
-
 
 #---Pulling Active Business Data
 client = Socrata("data.lacity.org", None)
-
 abiz = pd.DataFrame(client.get('ngkp-kqkn', limit=10000000))
 
-abiz.head()
-
-
-# In[5]:
 
 
 #---Pull NAIC Industry Table
 n_table=pwd+'/naics_industry_table.csv'
 naics_table=pd.read_csv(n_table)
-naics_table.head()
-
-
-# In[25]:
 
 
 def chunks(l, n, z):
@@ -74,14 +64,8 @@ def chunks(l, n, z):
         print("update successful")
 
 
-# In[26]:
-
-
 def abOutput(x):
     x.to_csv(ABOutput)
-
-
-# In[27]:
 
 
 def top10(x):
@@ -91,10 +75,6 @@ def top10(x):
     predom_industries.remove('Professional, Scientific, and Technical Services');
     predom_industries.remove('Other Services (except Public Administration)');
     return predom_industries
-
-
-# In[28]:
-
 
 def dataprep(x):
     df=x
@@ -134,9 +114,6 @@ def dataprep(x):
     return predom_ind
 
 
-# In[29]:
-
-
 def go():
     predom=dataprep(abiz)
     updated_csv_df = pd.read_csv(ABOutput)
@@ -144,9 +121,6 @@ def go():
     updated_csv_df.dtypes
     updated_csv_df['GEOID10'] = updated_csv_df['GEOID10'].apply(lambda x: '{0:0>12}'.format(x))
     geohub_updates(updated_csv_df,credentials.lahub_user,credentials.lahub_pass,predom)
-
-
-# In[30]:
 
 
 def update_desc(x,y,z):
@@ -160,9 +134,6 @@ def update_desc(x,y,z):
     item_props = {'title' : 'Active Businesses Data by Block Group', 'description':text.format(x)}
     active_biz.update(item_properties=item_props)
     print("updates made!")
-
-
-# In[31]:
 
 
 def geohub_updates(x,user,pas,topz):
@@ -226,14 +197,7 @@ def geohub_updates(x,user,pas,topz):
     update_desc(topz,output_layer_name,gis)
 
 
-# In[32]:
-
-
 get_ipython().run_cell_magic('time', '', 'if __name__ == "__main__":\n\tgo()')
-
-
-# In[ ]:
-
 
 
 

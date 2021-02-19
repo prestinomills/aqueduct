@@ -13,6 +13,7 @@ Created on Wed May  1 08:51:03 2019
 
 import os
 pwd=os.getcwd()
+print(pwd)
 import sys
 #!{sys.executable} -m pip install sodapy
 from sodapy import Socrata

@@ -53,7 +53,7 @@ abiz = pd.DataFrame(client.get('ngkp-kqkn', limit=10000000))
 
 
 #---Pull NAIC Industry Table
-n_table='../naics_industry_table.csv'
+n_table='https://raw.githubusercontent.com/prestinomills/aqueduct/Know_Your_Community_Pipelines/civis/geohub/ActiveBusinessBlockgroupAggregation/naics_industry_table.csv'
 naics_table=pd.read_csv(n_table)
 
 

@@ -76,7 +76,7 @@ def top10(x):
     predom_industries.remove('Other Services (except Public Administration)');
     return predom_industries
 
-def dataprep(x):
+def dataprep(x,y):
     df=x
     df=df.dropna(subset=['location_1','naics'])
     df['location_2']=df['location_1'].astype('str') #Prepping location data to parse (x,y) values
@@ -87,7 +87,7 @@ def dataprep(x):
     df['lat']=locations[1]
     df=df.dropna(subset=['lat','lon'])
     df['naics_sector'] = df['naics'].str[:2].astype('str')
-    dfn=naics_table
+    dfn=y
     dfn['naics_sector']=dfn['naics_sector'].astype('str')
     df2=pd.merge(df,dfn,how='inner',on='naics_sector',validate='m:1')
     df2.lon=df.lon.astype(float)
@@ -115,7 +115,7 @@ def dataprep(x):
 
 
 def go():
-    predom=dataprep(abiz)
+    predom=dataprep(abiz,naics_table)
     updated_csv_df = pd.read_csv(ABOutput)
     updated_csv_df['GEOID10']=updated_csv_df['GEOID10'].astype(str)
     updated_csv_df.dtypes
